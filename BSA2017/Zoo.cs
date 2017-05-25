@@ -92,7 +92,7 @@ namespace BSA2017
                     Console.WriteLine("Added animal {0} with name {1}", type, name);
                     break;
                 default:
-                    Console.WriteLine("Error:No one added(Wrong type {0}",type);
+                    Console.WriteLine("Error:No one added(Wrong type {0})!!!",type);
                     break;
                     IntroduceAll();
             }
