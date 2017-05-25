@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace BSA2017
 {
+    //abstract class
    abstract class Animal
     {
         private Status status;
 
-      
+    
         public Status Status
         {
             get { return status; }
@@ -24,38 +25,22 @@ namespace BSA2017
                 else if(status==Status.Hungry)
                     {
                     status = Status.Sick;
-                    --currentHealth;
+                   --currentHealth;
                 }
-                else if (status == Status.Sick)
+                else if (status == Status.Sick&&currentHealth>=0)
                 {
                     if (currentHealth > 0)
                     {
                         --currentHealth;
                     }
                     else
+                    if(status == Status.Sick || currentHealth == 0)
                     {
                         status = Status.Dead;
 
                     }
                 }
-                //    if (currentHealth==maxHealth)
-                //    {
-                //        status = ((Statuses)1).ToString();
-                //    }
-                //else if (currentHealth<maxHealth&&currentHealth>1)
-                //    {
-                //        status = ((Statuses)2).ToString();
-                //    }
-                //else if (currentHealth==1)
-                //    {
-                //        status = ((Statuses)3).ToString();
-                //    }
-                //else
-                //    {
-                //        status = ((Statuses)4).ToString();
-                //    }
-
-                //        }
+               
             }
         }
         private string name;
@@ -79,10 +64,10 @@ namespace BSA2017
             }
         }
         protected int maxHealth;
-        public void SetStatus(Status status)
-        {
-            this.status = status;
-        }
+        //public void SetStatus(Status status)
+        //{
+        //    this.status = status;
+        //}
 
         public int MaxHealth
         {
@@ -93,6 +78,9 @@ namespace BSA2017
             this.status = Status.Full;
             Name = name;
         }
+        //
+
+       // Output of information about the object
         public void Introduce()
         {
             Console.WriteLine("My name is {0} ,i am a {1} and i {2} , my health is {3}", name,GetType().Name,status,currentHealth);

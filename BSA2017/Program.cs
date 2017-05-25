@@ -3,31 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Threading;
+//using System.Threading;
+using System.Timers;
 
 namespace BSA2017
 {
     class Program
     {
+        private static System.Timers.Timer aTimer;
+        private static void SetTimer(Zoo onj)
+        {
+
+            //Set the time to the timer
+            aTimer = new System.Timers.Timer(20000);
+
+           // Adding a method
+            aTimer.Elapsed +=onj.TakeRandomAnimal;
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
+        }
         static void Main(string[] args)
         {
             
-            Zoo myZoo = new Zoo();
-            myZoo.Add("lion", "Lion");
-            myZoo.Add("wolf", "Wolf");
-            myZoo.Add("tiger", "Tiger");
-            myZoo.Add("aaa", "Wolf");
-            TimerCallback myCallTimer = new TimerCallback(myZoo.TakeRandomAnimal);
-            Timer myTimer = new Timer(myCallTimer, 0, 0, 5000);
+           // Creating an object
+                        Zoo myZoo = new Zoo();
 
-            string types;
-            string names;
+            //TimerCallback myCallTimer = new TimerCallback(myZoo.TakeRandomAnimal);
+            //Timer myTimer = new Timer(myCallTimer, 0, 0, 5000);
+
+
+            //Start timer
+            SetTimer(myZoo);
+           
             char answer;
             char anserForRepeat;
-            Console.WriteLine("--------------------");
+            Console.WriteLine("BINARY STUDIO ACADEMY 2017 - HOME TASK 2");
+            Console.WriteLine("-----------------------------------------");
             Console.WriteLine("Welcome to my zoo");
-            Console.WriteLine("What you want to to?");
-
+            Console.WriteLine("You can add new animal like:Lion, Wolf, Fox, Tiger, Bear and Elephant");
+            Console.WriteLine("What you want to do?");
+            Console.WriteLine("-----------------------------------------");
             do
             {
 
@@ -35,53 +50,48 @@ namespace BSA2017
                 Console.WriteLine("Feed animal?(f)");
                 Console.WriteLine("Cure animal(c)");
                 Console.WriteLine("Remove animal?(r)");
-                answer = char.Parse(Console.ReadLine());
+                Console.WriteLine("Show all?(i)");
+                Console.WriteLine("-----------------------------------------");
+
                 try
                 {
-                    switch (answer)
-                    {
-                        case 'a':
-                            Console.WriteLine("write type an name for animal");
-                            types = Console.ReadLine();
-                            names = Console.ReadLine();
-                            myZoo.Add(names, types);
-                            break;
-                        case 'c':
-                            Console.WriteLine("write name for animal");
-
-                            names = Console.ReadLine();
-                            myZoo.Cure(names);
-                            break;
-                        case 'f':
-                            Console.WriteLine("write name for animal");
-
-                            names = Console.ReadLine();
-                            myZoo.Feed(names);
-                            break;
-                        case 'r':
-                            Console.WriteLine("write name for animal");
-
-                            names = Console.ReadLine();
-                            myZoo.Remove(names);
-                            break;
-
-                    }
+                    Console.WriteLine("Your answer:{0}",answer = char.Parse(Console.ReadLine()));
+                    myZoo.InterfaceMethod(answer);
+                    
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Sorry wrong comand");
+                    Console.WriteLine("-----------------------------------------");
+                    Console.WriteLine("Sorry wrong command");
+                    Console.WriteLine("-----------------------------------------");
                 }
-                do
-                {
-                    Console.WriteLine("repeat?(y/n)");
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine("Repeat?(y/n)");
+                Console.WriteLine("-----------------------------------------");
+                try
+                    {
 
-                    anserForRepeat = char.Parse(Console.ReadLine());
 
-
-                }
-                    } while (anserForRepeat ==;
+                        anserForRepeat = char.Parse(Console.ReadLine());
+                    }
+                    catch(Exception ex)
+                    {
+                    Console.WriteLine("-----------------------------------------");
+                    Console.WriteLine("Wrong format!!!");
+                    Console.WriteLine("-----------------------------------------");
+                    anserForRepeat = ' ';
+                    }
+                
             } while (anserForRepeat =='y');
+            //Show
             myZoo.IntroduceAll();
+            do
+
+                //When the collection is empty, the timer stops
+            { if (myZoo.ListCount() == true)
+                    aTimer.Stop();
+            }
+            while (myZoo.ListCount()!=true);
 
         }
     }
