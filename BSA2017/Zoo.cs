@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace BSA2017
 {
@@ -34,7 +35,7 @@ namespace BSA2017
                 default:
                     Console.WriteLine("Error:No one added");
                     break;
-
+                    IntroduceAll();
             }
         }
         public void Feed(string name)
@@ -61,5 +62,20 @@ namespace BSA2017
                 pet.Introduce();
             }
         }
+        public  void TakeRandomAnimal(object onj)
+        {
+            if (zoo.Count != 0)
+            {
+                Random random = new Random();
+                var element = zoo.ElementAt(random.Next(zoo.Count()));
+                element.Status = element.Status;
+            }
+           
+        }
+       
+
+
+
     }
+    
 }

@@ -8,29 +8,63 @@ namespace BSA2017
 {
    abstract class Animal
     {
-        enum Statuses { Full=1, Hungry, Sick , Dead}
-        private string status;
-        public string Status { get { return status; }
-            set {if(currentHealth==maxHealth)
-                {
-                    status = ((Statuses)1).ToString();
-                }
-            else if (currentHealth<maxHealth&&currentHealth>1)
-                {
-                    status = ((Statuses)2).ToString();
-                }
-            else if (currentHealth==1)
-                {
-                    status = ((Statuses)3).ToString();
-                }
-            else
-                {
-                    status = ((Statuses)4).ToString();
-                }
+        private Status status;
 
-                    } }
+      
+        public Status Status
+        {
+            get { return status; }
+            set
+            {
+                status = value;
+                if(status==Status.Full)
+                {
+                   status=Status.Hungry;
+                }
+                else if(status==Status.Hungry)
+                    {
+                    status = Status.Sick;
+                    --currentHealth;
+                }
+                else if (status == Status.Sick)
+                {
+                    if (currentHealth > 0)
+                    {
+                        --currentHealth;
+                    }
+                    else
+                    {
+                        status = Status.Dead;
+
+                    }
+                }
+                //    if (currentHealth==maxHealth)
+                //    {
+                //        status = ((Statuses)1).ToString();
+                //    }
+                //else if (currentHealth<maxHealth&&currentHealth>1)
+                //    {
+                //        status = ((Statuses)2).ToString();
+                //    }
+                //else if (currentHealth==1)
+                //    {
+                //        status = ((Statuses)3).ToString();
+                //    }
+                //else
+                //    {
+                //        status = ((Statuses)4).ToString();
+                //    }
+
+                //        }
+            }
+        }
         private string name;
-        public string Name { get { return name; } set { name = value; } }
+        public string Name
+        { get
+            { return name; }
+            set
+            { name = value; }
+        }
         protected int currentHealth;
         public int CurrentHealth
         {
@@ -45,19 +79,25 @@ namespace BSA2017
             }
         }
         protected int maxHealth;
+        public void SetStatus(Status status)
+        {
+            this.status = status;
+        }
+
         public int MaxHealth
         {
             get { return maxHealth; }
         }
         public Animal(string name)
         {
-            status = ((Statuses)1).ToString();
+            this.status = Status.Full;
             Name = name;
         }
         public void Introduce()
         {
-            Console.WriteLine("I'm {0} of {1}", name,currentHealth);
+            Console.WriteLine("My name is {0} ,i am a {1} and i {2} , my health is {3}", name,GetType().Name,status,currentHealth);
         }
+        
     }
     sealed class Lion:Animal
     {
@@ -73,7 +113,7 @@ namespace BSA2017
     {
         public Tiger(string name):base(name)
         {
-            maxHealth = 5;
+            maxHealth = 4;
             currentHealth = maxHealth;
         }
     }
@@ -81,7 +121,7 @@ namespace BSA2017
     {
         public Wolf(string name):base(name)
         {
-            maxHealth = 5;
+            maxHealth =4 ;
             currentHealth = maxHealth;
         }
     }
@@ -89,7 +129,7 @@ namespace BSA2017
     {
         public Fox(string name):base(name)
         {
-            maxHealth = 5;
+            maxHealth = 3;
             currentHealth = maxHealth;
         }
     }
@@ -97,7 +137,7 @@ namespace BSA2017
     {
         public Bear(string name):base(name)
         {
-            maxHealth = 5;
+            maxHealth = 6;
             currentHealth = maxHealth;
         }
     }
@@ -105,7 +145,7 @@ namespace BSA2017
     {
         public Elephant(string name):base(name)
         {
-            maxHealth = 5;
+            maxHealth = 7;
             currentHealth = maxHealth;
         }
     }
