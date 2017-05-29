@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Animal.cs" />
     <Compile Include="Interfaces.cs" />
+    <Compile Include="LinqMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Status.cs" />

@@ -15,7 +15,7 @@ namespace BSA2017
         {
 
             //Set the time to the timer
-            aTimer = new System.Timers.Timer(20000);
+            aTimer = new System.Timers.Timer(10000);
 
            // Adding a method
             aTimer.Elapsed +=onj.TakeRandomAnimal;
@@ -51,6 +51,7 @@ namespace BSA2017
                 Console.WriteLine("Cure animal(c)");
                 Console.WriteLine("Remove animal?(r)");
                 Console.WriteLine("Show all?(i)");
+                Console.WriteLine("Call linq methods(l)");
                 Console.WriteLine("-----------------------------------------");
 
                 try
