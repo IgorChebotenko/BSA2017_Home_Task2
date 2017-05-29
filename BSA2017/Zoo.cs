@@ -130,7 +130,7 @@ namespace BSA2017
                         case '9':
                             linqMethods.MaxAndMin(zoo);
                             break;
-                        case 'a':
+                        case '0':
                             linqMethods.MiddleHealth(zoo); ;
                             break;
                         default:
